@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Shortener{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3 text-center">
+            <form method="post">
+                {% csrf_token %}
+                <h1>Shortener url</h1>
+                {{form.as_p}}
+                <button class="btn btn-info btn-lg" type="submit">Generar</button>
+            </form>
+        </div>
+        <div class="col-12">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 mt-3 text-center">
+                {% if shortened %}
+                    <div class="alert alert-info" role="alert">
+                        {{shortened}}
+                    </div>
+                {% endif %}
+            </div>
+
+            </div>
+        </div>
+        
+        </div>
+        </div>
+        {% endblock content %}
