@@ -1,5 +1,6 @@
 """Cutter Models."""
 
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django_extensions.db.models import TimeStampedModel
 from django.db import models
@@ -43,6 +44,13 @@ class Urls(TimeStampedModel, models.Model):
     http_url = models.URLField(max_length=200)
     counter = models.IntegerField(default=0)
     short_uri = models.SlugField()
+
+    @property
+    def shorted_ur(self):
+        return '{}/{}'.format(
+                settings.SITE_URL,
+                self.short_uri
+            )
 
     class Meta:
         verbose_name = 'Url shortened'
